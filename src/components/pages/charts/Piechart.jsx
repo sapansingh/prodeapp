@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import Chart from 'react-apexcharts';
 
 const Piecharts = ({bartype,size,name,colorrt}) => {

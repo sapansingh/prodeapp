@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "./Cardbtn";
 import { useParams } from 'react-router-dom';
 import Totalassets from "./Totalassets";
 import Addassets from "./Addassets";

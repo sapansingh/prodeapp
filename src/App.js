@@ -12,16 +12,19 @@ import { useNavigate } from "react-router-dom";
 import Admin from "./components/pages/admin/admin.jsx";
 import test from "./components/pages/admin/test.jsx";
 import Deshobord from "./components/pages/Deshboard.jsx";
+import Indexing from "./components/pages/MeritDesk/index.jsx";
+import Spinner from "./Spinner.jsx";
 
-
+export const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 function Home(){
+  
   const [login,setlogin]=useState();
   
   const valLogins = localStorage.getItem('islogin');
   
     useEffect(()=>{
       setlogin(valLogins);
-    console.log(login);
+ 
     },[login]);
 
   return(
@@ -40,16 +43,17 @@ function Home(){
         <Route path="/Admin/:canwe" element={<ProtectedRoute component={Admin} /> }/>
         <Route path="/Admin/:canwe/:userid" element={<ProtectedRoute component={Admin} /> }/>
         <Route path="/test" element={<ProtectedRoute component={test} /> }/>
+        <Route path="/meritalerts" element={<ProtectedRoute component={Indexing} /> }/>
         </Routes>
         </div>
      </Router>
- 
+     
     </>
   );
 }
 
-function ProtectedRoute({ component: Component }) {
-    const [isLogin, setIsLogin] = useState(false); // Assume logged in by default
+function   ProtectedRoute ({ component: Component }) {
+    const [isLogin, setIsLogin] = useState(); // Assume logged in by default
     const navigate = useNavigate();
   
     useEffect(() => {
@@ -59,18 +63,20 @@ function ProtectedRoute({ component: Component }) {
         setIsLogin(true);
       } else {
         setIsLogin(false);
-        navigate('/Login'); // Redirect to login if not authenticated
+       // navigate('/Login'); // Redirect to login if not authenticated
       }
-    }, [navigate]);
+    }, [isLogin]);
   
-    if (!isLogin) {
-      return <Login />;
-    }
-  
+     const reloadlogin=()=> {
+        <Spinner />
+        setTimeout(2000)
+     }
+  reloadlogin();
     return (
       <>
         <Navigationbar />
-        {Component && <Component />}
+        {isLogin? Component && <Component />:<Login />}
+
         <Footer />
       </>
     );

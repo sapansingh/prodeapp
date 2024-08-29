@@ -1,11 +1,12 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
 import{ useState, useEffect } from 'react';
 import axios from "axios";
 import Spinner from "../../../../Spinner";
 
-const Vtr=()=>{
+const Pcrexport=()=>{
     useEffect(() => {
-        document.title = 'Pilot';
+        document.title = 'Assignment';
       }, []);
       const [startDate, setStartDate] = useState('');
       const [endDate, setEndDate] = useState('');
@@ -18,19 +19,14 @@ const Vtr=()=>{
         setStartDate(yesterday.toISOString().split('T')[0]);
         setEndDate(yesterday.toISOString().split('T')[0]);
       }, []);
-      const apiurl=process.env.REACT_APP_API_BASE_URL_39;
+      const apiurl=process.env.REACT_APP_API_BASE_URL;
 const getAssignmentdata=async()=>{
   setistrue(false);
-
-  const oktr={ date1: startDate,
-    date2: endDate};
-    const satr=JSON.stringify(oktr);
-
-    const formData = new FormData();
-    formData.append('date1', startDate);
-formData.append('date2', endDate);
   try{
-    const responsedata=await axios.post(apiurl+"/gvkprod/v2/app/analytics/pilotapp.php",satr);
+    const responsedata=await axios.get(apiurl+"/assignment",{ params: {
+      start: startDate,
+      end: endDate
+  }});
     const respodata=responsedata.data;  
     responsedata.data.length===0?setistrue(false):setistrue(true);
     setAssignmentdata(respodata);
@@ -39,15 +35,17 @@ formData.append('date2', endDate);
         console.log("no data found");
     }
   
+
 }
+
 
 let i=0;
 
-const downloadurl=`${apiurl}/gvkprod/v2/app/analytics/pilotappexport.php?start=${startDate}&end=${endDate}`;
+const downloadurl=`http://192.168.200.224/gvkprod/v2/app/analytics/pcrexport.php?start=${startDate}&end=${endDate}`;
 return (
 <>
-<div className="flex flex-col space-y-4">
-      <div className="flex justify-center m-2">
+<div className="flex flex-col">
+      <div className="flex justify-center">
       <div>
         <label className="block text-sm font-medium text-gray-700">Start Date</label>
         <input
@@ -100,39 +98,25 @@ return (
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 <tr>
-<th scope="col" className="px-6 py-3">
-            Sn
-            </th>
-            <th scope="col" className="px-6 py-3">vehicle_no</th>
-<th scope="col" className="px-6 py-3">callid</th>
-<th scope="col" className="px-6 py-3">Assigned_time</th>
-<th scope="col" className="px-6 py-3">assigned_by</th>
-<th scope="col" className="px-6 py-3">start_time</th>
-<th scope="col" className="px-6 py-3">start_latitude</th>
-<th scope="col" className="px-6 py-3">start_longitude</th>
-<th scope="col" className="px-6 py-3">scene_arrival_time</th>
-<th scope="col" className="px-6 py-3">scene_arrival_latitude</th>
-<th scope="col" className="px-6 py-3">scene_arrival_longitude</th>
-<th scope="col" className="px-6 py-3">scene_depature_time</th>
-<th scope="col" className="px-6 py-3">scene_depature_latitude</th>
-<th scope="col" className="px-6 py-3">scene_depature_longitude</th>
-<th scope="col" className="px-6 py-3">institute_reach_time</th>
-<th scope="col" className="px-6 py-3">institute_reach_latitude</th>
-<th scope="col" className="px-6 py-3">institute_reach_longitude</th>
-<th scope="col" className="px-6 py-3">ctn_no</th>
-<th scope="col" className="px-6 py-3">odo_base_start</th>
-<th scope="col" className="px-6 py-3">odo_scene</th>
-<th scope="col" className="px-6 py-3">odo_hospital</th>
-<th scope="col" className="px-6 py-3">odo_base_reach</th>
-<th scope="col" className="px-6 py-3">released_by</th>
-<th scope="col" className="px-6 py-3">released_time</th>
-<th scope="col" className="px-6 py-3">HandoverTime</th>
-<th scope="col" className="px-6 py-3">HandoverLatitude</th>
-<th scope="col" className="px-6 py-3">HandoverLongitude</th>
-<th scope="col" className="px-6 py-3">BacktoBaseTime</th>
-<th scope="col" className="px-6 py-3">back_to_base_latitude</th>
-<th scope="col" className="px-6 py-3">back_to_base_longitude</th>
- 
+<th scope="col" className="px-3 py-3">Sn</th>
+<th scope="col" className="px-3 py-3">call_type_name</th>
+<th scope="col" className="px-3 py-3">callid</th>
+<th scope="col" className="px-3 py-3">call_time</th>
+<th scope="col" className="px-3 py-3">phone_number</th>
+<th scope="col" className="px-3 py-3">agent_connected_time</th>
+<th scope="col" className="px-3 py-3">popup_close_time</th>
+<th scope="col" className="px-3 py-3">call_end_time</th>
+<th scope="col" className="px-3 py-3">caller_name</th>
+<th scope="col" className="px-3 py-3">district_name</th>
+<th scope="col" className="px-3 py-3">mandal_name</th>
+<th scope="col" className="px-3 py-3">city_name</th>
+<th scope="col" className="px-3 py-3">call_remarks</th>
+<th scope="col" className="px-3 py-3">agent_id</th>
+<th scope="col" className="px-3 py-3">assigned_time</th>
+<th scope="col" className="px-3 py-3">vehicle_no</th>
+<th scope="col" className="px-3 py-3">contact_number</th>
+<th scope="col" className="px-3 py-3">assigned_by</th>
+
 </tr>
 </thead>
 
@@ -143,91 +127,55 @@ return (
 {i=i+1}
 </td>
 <td className="px-3 py-3 font-mediumwhitespace-nowrap dark:text-blue-100">
- {assign.vehicle_no}
+ {assign.call_type_name}
 </td>
 <td className="px-3 py-3">
 {assign.callid}
 </td>
 <td className="px-3 py-3">
-{assign.Assigned_time}
+{assign.call_time}
+</td>
+<td className="px-3 py-3">
+{assign.phone_number}
+</td>
+<td className="px-3 py-3">
+{assign.agent_connected_time}
+</td>
+<td className="px-3 py-3">
+{assign.popup_close_time}
+</td>
+<td className="px-3 py-3">
+{assign.call_end_time}
+</td>
+<td className="px-3 py-3">
+{assign.caller_name}
+</td>
+<td className="px-3 py-3">
+{assign.district_name}
+</td>
+<td className="px-3 py-3">
+{assign.mandal_name}
+</td>
+<td className="px-3 py-3">
+{assign.city_name}
+</td>
+<td className="px-3 py-3">
+{assign.call_remarks}
+</td>
+<td className="px-3 py-3">
+{assign.agent_id}
+</td>
+<td className="px-3 py-3">
+{assign.assigned_time}
+</td>
+<td className="px-3 py-3">
+{assign.vehicle_no}
+</td>
+<td className="px-3 py-3">
+{assign.contact_number}
 </td>
 <td className="px-3 py-3">
 {assign.assigned_by}
-</td>
-<td className="px-3 py-3">
-{assign.start_time}
-</td>
-<td className="px-3 py-3">
-{assign.start_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.start_longitude}
-</td>
-<td className="px-3 py-3">
-{assign.scene_arrival_time}
-</td>
-<td className="px-3 py-3">
-{assign.scene_arrival_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.scene_arrival_longitude}
-</td>
-<td className="px-3 py-3">
-{assign.scene_depature_time}
-</td>
-<td className="px-3 py-3">
-{assign.scene_depature_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.scene_depature_longitude}
-</td>
-<td className="px-3 py-3">
-{assign.institute_reach_time}
-</td>
-<td className="px-3 py-3">
-{assign.institute_reach_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.institute_reach_longitude}
-</td>
-<td className="px-3 py-3">
-{assign.ctn_no}
-</td>
-<td className="px-3 py-3">
-{assign.odo_base_start}
-</td>
-<td className="px-3 py-3">
-{assign.odo_scene}
-</td>
-<td className="px-3 py-3">
-{assign.odo_hospital}
-</td>
-<td className="px-3 py-3">
-{assign.odo_base_reach}
-</td>
-<td className="px-3 py-3">
-{assign.released_by}
-</td>
-<td className="px-3 py-3">
-{assign.released_time}
-</td>
-<td className="px-3 py-3">
-{assign.HandoverTime}
-</td>
-<td className="px-3 py-3">
-{assign.HandoverLatitude}
-</td>
-<td className="px-3 py-3">
-{assign.HandoverLongitude}
-</td>
-<td className="px-3 py-3">
-{assign.BacktoBaseTime}
-</td>
-<td className="px-3 py-3">
-{assign.back_to_base_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.back_to_base_longitude}
 </td>
 </tr>
 
@@ -242,4 +190,4 @@ return (
 }
 
 
-export default Vtr;
+export default Pcrexport;

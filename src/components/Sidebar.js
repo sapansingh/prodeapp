@@ -9,7 +9,6 @@ const Sidebar=({datar})=>{
 
     
     const baseurl=process.env.REACT_APP_API_BASE_URL_SELF;
-console.log(datar);
     return(
 <>
 
@@ -19,10 +18,10 @@ console.log(datar);
    <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
     <img src={logo}/>
       <ul className="space-y-2 font-medium mt-20">
-      {datar.map((itr)=>(  
+      {datar.map((userdata)=>(  
                     <li>   
-                    <Link to={`${baseurl}/${itr.href}`} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group active">
-                       <span className="ms-3">{itr.name}</span>
+                    <Link to={`${baseurl}/${userdata.href}`} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group active">
+                       <span className="ms-3">{userdata.name}</span>
                     </Link>
                   </li> 
               

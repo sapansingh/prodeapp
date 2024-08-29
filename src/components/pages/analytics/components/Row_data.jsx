@@ -1,11 +1,12 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
 import{ useState, useEffect } from 'react';
 import axios from "axios";
 import Spinner from "../../../../Spinner";
 
-const Vtr=()=>{
+const Rawdata=()=>{
     useEffect(() => {
-        document.title = 'Pilot';
+        document.title = 'Row Data';
       }, []);
       const [startDate, setStartDate] = useState('');
       const [endDate, setEndDate] = useState('');
@@ -30,7 +31,7 @@ const getAssignmentdata=async()=>{
     formData.append('date1', startDate);
 formData.append('date2', endDate);
   try{
-    const responsedata=await axios.post(apiurl+"/gvkprod/v2/app/analytics/pilotapp.php",satr);
+    const responsedata=await axios.post(apiurl+"/gvkprod/v2/app/analytics/nearestvicle.php",satr);
     const respodata=responsedata.data;  
     responsedata.data.length===0?setistrue(false):setistrue(true);
     setAssignmentdata(respodata);
@@ -39,11 +40,12 @@ formData.append('date2', endDate);
         console.log("no data found");
     }
   
+
 }
 
 let i=0;
 
-const downloadurl=`${apiurl}/gvkprod/v2/app/analytics/pilotappexport.php?start=${startDate}&end=${endDate}`;
+const downloadurl=`${apiurl}/gvkprod/v2/app/analytics/nearestvicleexport.php?start=${startDate}&end=${endDate}`;
 return (
 <>
 <div className="flex flex-col space-y-4">
@@ -103,36 +105,23 @@ return (
 <th scope="col" className="px-6 py-3">
             Sn
             </th>
-            <th scope="col" className="px-6 py-3">vehicle_no</th>
-<th scope="col" className="px-6 py-3">callid</th>
-<th scope="col" className="px-6 py-3">Assigned_time</th>
-<th scope="col" className="px-6 py-3">assigned_by</th>
-<th scope="col" className="px-6 py-3">start_time</th>
-<th scope="col" className="px-6 py-3">start_latitude</th>
-<th scope="col" className="px-6 py-3">start_longitude</th>
-<th scope="col" className="px-6 py-3">scene_arrival_time</th>
-<th scope="col" className="px-6 py-3">scene_arrival_latitude</th>
-<th scope="col" className="px-6 py-3">scene_arrival_longitude</th>
-<th scope="col" className="px-6 py-3">scene_depature_time</th>
-<th scope="col" className="px-6 py-3">scene_depature_latitude</th>
-<th scope="col" className="px-6 py-3">scene_depature_longitude</th>
-<th scope="col" className="px-6 py-3">institute_reach_time</th>
-<th scope="col" className="px-6 py-3">institute_reach_latitude</th>
-<th scope="col" className="px-6 py-3">institute_reach_longitude</th>
-<th scope="col" className="px-6 py-3">ctn_no</th>
-<th scope="col" className="px-6 py-3">odo_base_start</th>
-<th scope="col" className="px-6 py-3">odo_scene</th>
-<th scope="col" className="px-6 py-3">odo_hospital</th>
-<th scope="col" className="px-6 py-3">odo_base_reach</th>
-<th scope="col" className="px-6 py-3">released_by</th>
-<th scope="col" className="px-6 py-3">released_time</th>
-<th scope="col" className="px-6 py-3">HandoverTime</th>
-<th scope="col" className="px-6 py-3">HandoverLatitude</th>
-<th scope="col" className="px-6 py-3">HandoverLongitude</th>
+            <th scope="col" className="px-6 py-3">callid</th>
+<th scope="col" className="px-6 py-3">vehicle_no</th>
+<th scope="col" className="px-6 py-3">contact_number</th>
+<th scope="col" className="px-6 py-3">vehicle_distance</th>
+<th scope="col" className="px-6 py-3">feedback_remarks_description</th>
+<th scope="col" className="px-6 py-3">attempted_time</th>
+<th scope="col" className="px-6 py-3">callback_time</th>
+<th scope="col" className="px-6 py-3">last_caseid</th>
+<th scope="col" className="px-6 py-3">assigned_time</th>
 <th scope="col" className="px-6 py-3">BacktoBaseTime</th>
-<th scope="col" className="px-6 py-3">back_to_base_latitude</th>
-<th scope="col" className="px-6 py-3">back_to_base_longitude</th>
- 
+<th scope="col" className="px-6 py-3">chief_complaint_name</th>
+<th scope="col" className="px-6 py-3">district_name</th>
+<th scope="col" className="px-6 py-3">mandal_name</th>
+<th scope="col" className="px-6 py-3">city_name</th>
+<th scope="col" className="px-6 py-3">landmark</th>
+<th scope="col" className="px-6 py-3">ero_id</th>
+
 </tr>
 </thead>
 
@@ -143,92 +132,54 @@ return (
 {i=i+1}
 </td>
 <td className="px-3 py-3 font-mediumwhitespace-nowrap dark:text-blue-100">
- {assign.vehicle_no}
+ {assign.callid}
 </td>
 <td className="px-3 py-3">
-{assign.callid}
+{assign.vehicle_no}
 </td>
 <td className="px-3 py-3">
-{assign.Assigned_time}
+{assign.contact_number}
 </td>
 <td className="px-3 py-3">
-{assign.assigned_by}
+{assign.vehicle_distance}
 </td>
 <td className="px-3 py-3">
-{assign.start_time}
+{assign.feedback_remarks_description}
 </td>
 <td className="px-3 py-3">
-{assign.start_latitude}
+{assign.attempted_time}
 </td>
 <td className="px-3 py-3">
-{assign.start_longitude}
+{assign.callback_time}
 </td>
 <td className="px-3 py-3">
-{assign.scene_arrival_time}
+{assign.last_caseid}
 </td>
 <td className="px-3 py-3">
-{assign.scene_arrival_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.scene_arrival_longitude}
-</td>
-<td className="px-3 py-3">
-{assign.scene_depature_time}
-</td>
-<td className="px-3 py-3">
-{assign.scene_depature_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.scene_depature_longitude}
-</td>
-<td className="px-3 py-3">
-{assign.institute_reach_time}
-</td>
-<td className="px-3 py-3">
-{assign.institute_reach_latitude}
-</td>
-<td className="px-3 py-3">
-{assign.institute_reach_longitude}
-</td>
-<td className="px-3 py-3">
-{assign.ctn_no}
-</td>
-<td className="px-3 py-3">
-{assign.odo_base_start}
-</td>
-<td className="px-3 py-3">
-{assign.odo_scene}
-</td>
-<td className="px-3 py-3">
-{assign.odo_hospital}
-</td>
-<td className="px-3 py-3">
-{assign.odo_base_reach}
-</td>
-<td className="px-3 py-3">
-{assign.released_by}
-</td>
-<td className="px-3 py-3">
-{assign.released_time}
-</td>
-<td className="px-3 py-3">
-{assign.HandoverTime}
-</td>
-<td className="px-3 py-3">
-{assign.HandoverLatitude}
-</td>
-<td className="px-3 py-3">
-{assign.HandoverLongitude}
+{assign.assigned_time}
 </td>
 <td className="px-3 py-3">
 {assign.BacktoBaseTime}
 </td>
 <td className="px-3 py-3">
-{assign.back_to_base_latitude}
+{assign.chief_complaint_name}
 </td>
 <td className="px-3 py-3">
-{assign.back_to_base_longitude}
+{assign.district_name}
 </td>
+<td className="px-3 py-3">
+{assign.mandal_name}
+</td>
+<td className="px-3 py-3">
+{assign.city_name}
+</td>
+<td className="px-3 py-3">
+{assign.landmark}
+</td>
+<td className="px-3 py-3">
+{assign.ero_id}
+</td>
+
 </tr>
 
 )))}
@@ -242,4 +193,4 @@ return (
 }
 
 
-export default Vtr;
+export default Rawdata;

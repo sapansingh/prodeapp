@@ -15,9 +15,9 @@ const menu=[{name:'User List',href:'Admin/UserList'},{name:'User Create',href:'A
     <>
     <Sidebar datar={menu}/>
 
-        {canwe=="UserList"?<UserList />:undefined}
-        {canwe=="UserCreate"?<UserCreate />:undefined}
-        {canwe=="userUpdate"?<UserUpdate userid={userid} />:undefined}
+        {canwe==="UserList"?<UserList />:undefined}
+        {canwe==="UserCreate"?<UserCreate />:undefined}
+        {canwe==="userUpdate"?<UserUpdate userid={userid} />:undefined}
     </>
     );
 }

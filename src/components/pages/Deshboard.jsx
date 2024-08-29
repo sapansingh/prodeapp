@@ -30,10 +30,9 @@ return(
         <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="50" name="Close Close"  colorrt="#FF4560" /></div>
         <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="30" name="Pending"  colorrt="#4589ff" /></div>
           <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="80" name="Replication"  colorrt="#454eff" /></div>
-
-          <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="80" name="Total Frv"  colorrt="#ff4564" /></div>
-          <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="80" name="Frv Event"  colorrt="#e045ff" /></div>
-          <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="80" name="Close Event"  colorrt="#ff45bb" /></div>
+          <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="75" name="Total Frv"  colorrt="#ff4564" /></div>
+          <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="25" name="Frv Event"  colorrt="#e045ff" /></div>
+          <div className="shadow-lg text-white" style={{width:400}}> <Piecharts bartype="radialBar" size="90" name="Close Event"  colorrt="#ff45bb" /></div>
 
       </div>
     </div>

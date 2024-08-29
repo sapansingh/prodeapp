@@ -34,8 +34,8 @@ export default function PenltyDeshbord(){
   },[]);
 
   //const data2023=monthlydata.map(datap=>datap.total_amount);
-  const data2023=monthlydata.filter(monthdatar=>monthdatar.year=="2023");
-  const data2024=monthlydata.filter(monthdatar=>monthdatar.year=="2024");
+  const data2023=monthlydata.filter(monthdatar=>monthdatar.year==="2023");
+  const data2024=monthlydata.filter(monthdatar=>monthdatar.year==="2024");
 
   let data23=data2023.map((datart=>datart.total_amount));
   let data23list=data2023.map((datart=>datart.month));
@@ -49,7 +49,7 @@ const menu=[];
 
 return(
 <>
-<Sidebar datar={menu}/>
+<Sidebar datar={menu} />
 <header className="bg-white shadow p-4 sm:ml-64 ">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8" style={{display:"flex"}}>
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">Penalty 108 Dashboard</h1>    

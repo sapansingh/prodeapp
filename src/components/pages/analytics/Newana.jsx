@@ -13,13 +13,14 @@ import Nearest_Vehicle from "./components/Nearest_Vehicle";
 import Sidebar from "../../Sidebar";
 import Rawdata from "./components/Row_data";
 import Pcrexport from "./components/Pcrexport";
+import Pressbtn from "./components/Pressbtn";
 
 
 const  Newana=()=>{
     const {canwe} =useParams();
    
  
-    const menu=[{name:'Assignment',href:'Analytics/Assignment'},{name:'VNA' ,href:'Analytics/VNA'},{name:'VTR',href:'Analytics/VTR'},{name:'VB',href:'Analytics/VBdata'},{name:'Misscall' ,href:'Analytics/MISSCALL'},{name:'PILOTAPP' ,href:'Analytics/PILOTAPP'},{name:'Callidwise',href:'Analytics/Callidwise'},{name:'Callid_wise_latlong',href:'Analytics/Callid_wise_latlong'},{name:'Vtr_with_last_case_wise',href:'Analytics/Vtr_with_last_case_wise'},{name:'Nearest Vehicle',href:'Analytics/Nearest_Vehicle'},{name:'Epcr data',href:'Analytics/epcr'},{name:'Raw Data',href:'Analytics/Rawdata'}]
+    const menu=[{name:'Assignment',href:'Analytics/Assignment'},{name:'VNA' ,href:'Analytics/VNA'},{name:'VTR',href:'Analytics/VTR'},{name:'VB',href:'Analytics/VBdata'},{name:'Misscall' ,href:'Analytics/MISSCALL'},{name:'PILOTAPP' ,href:'Analytics/PILOTAPP'},{name:'Callidwise',href:'Analytics/Callidwise'},{name:'Callid_wise_latlong',href:'Analytics/Callid_wise_latlong'},{name:'Vtr_with_last_case_wise',href:'Analytics/Vtr_with_last_case_wise'},{name:'Nearest Vehicle',href:'Analytics/Nearest_Vehicle'},{name:'Epcr data',href:'Analytics/epcr'},{name:'Pressbtn',href:'Analytics/pressbtn'},{name:'Raw Data',href:'Analytics/Rawdata'}]
 return(
 <>
 <Sidebar datar={menu}/>
@@ -39,6 +40,7 @@ return(
 { canwe==="Nearest_Vehicle" ?<Nearest_Vehicle />:undefined }
 { canwe==="epcr" ?<Pcrexport />:undefined }
 { canwe==="Rawdata" ?<Rawdata />:undefined }
+{ canwe==="pressbtn" ?<Pressbtn />:undefined }
 
 
    </div>

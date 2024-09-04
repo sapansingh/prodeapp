@@ -42,7 +42,7 @@ const getAssignmentdata=async()=>{
 
 let i=0;
 
-const downloadurl=`${apiurl39}/gvkprod/v2/app/analytics/assignmentexport.php?start=${startDate}&end=${endDate}`;
+const downloadurl=`${apiurl39}/gvkprod/v2/app/analytics/callidwithlatlongexport.php?start=${startDate}&end=${endDate}`;
 return (
 <>
 <div className="flex flex-col space-y-4">
